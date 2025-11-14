@@ -7,7 +7,7 @@ public class Cursor {
 
     private Boolean is_end;
 
-    private Integer id;
+    private Long id;
 
-    private Integer time;
+    private Long time;
 }

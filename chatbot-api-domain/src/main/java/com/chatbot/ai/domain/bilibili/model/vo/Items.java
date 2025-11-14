@@ -5,11 +5,11 @@ import lombok.Data;
 @Data
 public class Items {
 
-    private Integer id;
+    private Long id;
 
     private User user;
 
     private Item item;
 
-    private Integer at_time;
+    private Long at_time;
 }

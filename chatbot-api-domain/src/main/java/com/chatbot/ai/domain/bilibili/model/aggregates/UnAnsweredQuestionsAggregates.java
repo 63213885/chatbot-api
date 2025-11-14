@@ -1,14 +1,16 @@
 package com.chatbot.ai.domain.bilibili.model.aggregates;
 
 
-import com.chatbot.ai.domain.bilibili.model.vo.Data;
+import com.chatbot.ai.domain.bilibili.model.response.Data;
 
 @lombok.Data
 public class UnAnsweredQuestionsAggregates {
 
-    private Integer code;
+    private Long code;
 
     private String message;
+
+    private Long ttl;
 
     private Data data;
 }

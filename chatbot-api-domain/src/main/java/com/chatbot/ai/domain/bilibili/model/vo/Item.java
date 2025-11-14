@@ -11,7 +11,7 @@ public class Item {
 
     private String business;
 
-    private Integer business_id;
+    private Long business_id;
 
     private String title;
 
@@ -19,13 +19,13 @@ public class Item {
 
     private String uri;
 
-    private Integer subject_id;
+    private Long subject_id;
 
-    private Integer root_id;
+    private Long root_id;
 
-    private Integer target_id;
+    private Long target_id;
 
-    private Integer source_id;
+    private Long source_id;
 
     private String source_content;
 

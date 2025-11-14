@@ -5,9 +5,9 @@ import lombok.Data;
 @Data
 public class User {
 
-    private Integer mid;
+    private Long mid;
 
-    private Integer fans;
+    private Long fans;
 
     private String nickname;
 
