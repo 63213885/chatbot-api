@@ -9,16 +9,13 @@ import com.chatbot.ai.domain.bilibili.model.vo.Items;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -29,18 +26,18 @@ import java.util.List;
 public class SpringBootRunTest {
 
     @Value("${chatbot-api.cookie}")
-    private String cookie;
+    private String COOKIE;
+    @Value("${chatbot-api.csrf}")
+    private String CSRF;
 
     @Resource
     private BilibiliApi bilibiliApi;
     @Resource
-    private Gemini memini;
-    @Autowired
     private Gemini gemini;
 
     @Test
     public void test_bilibiliApi() throws IOException {
-        UnAnsweredQuestionsAggregates unAnsweredQuestionsAggregates = bilibiliApi.queryUnAnsweredQuestions(cookie);
+        UnAnsweredQuestionsAggregates unAnsweredQuestionsAggregates = bilibiliApi.queryUnAnsweredQuestions(COOKIE);
         log.info("UnAnsweredQuestionsAggregates: {}", unAnsweredQuestionsAggregates);
 
         List<Items> items = unAnsweredQuestionsAggregates.getData().getItems();
@@ -70,9 +67,9 @@ public class SpringBootRunTest {
                     .mobi_app("web")
                     .root(item.getItem().getSource_id())
                     .parent(item.getItem().getSource_id())
-                    .csrf("5231552cd07aba3546afe462d2ab1997")
+                    .csrf(CSRF)
                     .build();
-            boolean answer = bilibiliApi.answer(cookie, answerRequest);
+            boolean answer = bilibiliApi.answer(COOKIE, answerRequest);
             log.info("answer: {}", answer);
         }
     }
