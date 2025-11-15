@@ -1,6 +1,7 @@
 package com.chatbot.ai.test;
 
 import com.chatbot.ai.ApiApplication;
+import com.chatbot.ai.domain.ai.Gemini;
 import com.chatbot.ai.domain.bilibili.BilibiliApi;
 import com.chatbot.ai.domain.bilibili.model.aggregates.UnAnsweredQuestionsAggregates;
 import com.chatbot.ai.domain.bilibili.model.request.AnswerRequest;
@@ -8,6 +9,7 @@ import com.chatbot.ai.domain.bilibili.model.vo.Items;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.ComponentScan;
@@ -31,6 +33,10 @@ public class SpringBootRunTest {
 
     @Resource
     private BilibiliApi bilibiliApi;
+    @Resource
+    private Gemini memini;
+    @Autowired
+    private Gemini gemini;
 
     @Test
     public void test_bilibiliApi() throws IOException {
@@ -69,5 +75,11 @@ public class SpringBootRunTest {
             boolean answer = bilibiliApi.answer(cookie, answerRequest);
             log.info("answer: {}", answer);
         }
+    }
+
+    @Test
+    public void test_gemini() throws IOException {
+        String response = gemini.doGemini("用cpp写一个a+b");
+        log.info("response: {}", response);
     }
 }

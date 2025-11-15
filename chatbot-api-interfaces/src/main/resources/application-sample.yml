@@ -3,3 +3,5 @@ server:
 
 chatbot-api:
   cookie: cookie
+
+gemini-api-key: gemini_api_key

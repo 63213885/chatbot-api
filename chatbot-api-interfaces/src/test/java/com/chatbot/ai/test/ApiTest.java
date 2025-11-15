@@ -1,5 +1,7 @@
 package com.chatbot.ai.test;
 
+import com.google.genai.Client;
+import com.google.genai.types.GenerateContentResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
@@ -7,15 +9,11 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.junit.Test;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,7 +23,6 @@ import java.util.List;
  * 单元测试
  */
 @Slf4j
-@SpringBootApplication
 public class ApiTest {
 
     @Test
@@ -82,4 +79,16 @@ public class ApiTest {
         }
     }
 
+    @Test
+    public void test_Gemini() {
+        Client client = Client.builder().apiKey("YOUR_API_KEY").build();
+
+        GenerateContentResponse response =
+                client.models.generateContent(
+                        "gemini-2.5-flash",
+                        "用java写个排序",
+                        null);
+        log.info("response = {}", response.toString());
+        System.out.println(response.text());
+    }
 }
