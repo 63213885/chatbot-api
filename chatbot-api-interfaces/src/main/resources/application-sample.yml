@@ -9,7 +9,7 @@ chatbot-api:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/comment
+    url: jdbc:mysql://localhost:3306/bilibili_reply
     username: username
     password: password
 
